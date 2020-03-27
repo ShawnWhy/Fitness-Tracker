@@ -6,9 +6,9 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnesslogger",
 useNewUrlParser: true,useUnifiedTopology: true});
 
 var activityList = {"strength":["push ups","pull ups","dead lift","bench lift"],"endurance":["jogging","cycling","jump roping"],"balance":["foottaps","sit to stand","standing march"],"flexibility":["yoga","stretching","tai-chi"]};
-db.ActivityList.create({ list:JSON.stringify(activityList) },{name:"ListToChooseFrom"})
-  .then(dbactivities => {
-    console.log(dbactivities);
+db.ActivityList.create({ list:JSON.stringify(activityList),name:"ListToChooseFrom"})
+  .then(dbactivitylists => {
+    console.log(dbactivitylists );
   })
   .catch(({message}) => {
     console.log(message);

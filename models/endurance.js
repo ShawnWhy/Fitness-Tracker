@@ -7,7 +7,7 @@ const EnduranceSchema = new Schema({
     type: String,
     unique: true
   },
-  enduranceExc: [
+  enduranceexcs: [
     {
       type: Schema.Types.ObjectId,
       ref: "EnduranceExc"

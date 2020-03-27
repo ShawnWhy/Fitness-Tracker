@@ -7,7 +7,7 @@ const FlexibilitySchema = new Schema({
     type: String,
     unique: true
   },
-  FlexibilityExc: [
+  flexibilityexcs: [
     {
       type: Schema.Types.ObjectId,
       ref: "FlexibilityExc"

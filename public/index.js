@@ -15,7 +15,7 @@ var tertiaryContainer = $(".tertiaryContainer");
 
 
 var deploystrengthChoices = function(){
-    console.log("deployingstrength");
+    // console.log("deployingstrength");
 let newChoiceBox = $("<select>");
 newChoiceBox.addClass("secondaryChoice")
 for(var i=0;i<strengthChoices.length;i++){
@@ -23,19 +23,18 @@ for(var i=0;i<strengthChoices.length;i++){
     newChoice.attr("value",strengthChoices[i]);
     newChoice.text(strengthChoices[i]);
     newChoiceBox.append(newChoice);
-    console.log("donechoices");
+    // console.log("donechoices");
 };
 let extraChoice=$("<option>")
 extraChoice.attr("value","New");
 extraChoice.text("create new activity");
-console.log("donenew");
 newChoiceBox.append(extraChoice);
 $(".secondaryContainer").append(newChoiceBox);
-console.log("donestrength");
+// console.log("donestrength");
 };
 
 var deployBalanceChoices = function(){
-    console.log("deployingbalance");
+    // console.log("deployingbalance");
 
     let newChoiceBox = $("<select>");
     newChoiceBox.addClass("secondaryChoice")
@@ -53,7 +52,7 @@ var deployBalanceChoices = function(){
     };
 
     var deployEnduranceChoices = function(){
-        console.log("deployingendurance");
+        // console.log("deployingendurance");
 
         let newChoiceBox = $("<select>");
         newChoiceBox.addClass("secondaryChoice")
@@ -72,7 +71,7 @@ var deployBalanceChoices = function(){
 
     
 var deployFlexibilityChoices = function(){
-    console.log("deployingflex");
+    // console.log("deployingflex");
 
     let newChoiceBox = $("<select>");
     newChoiceBox.addClass("secondaryChoice")
@@ -94,7 +93,7 @@ var deployFlexibilityChoices = function(){
 
 
 var deployTertiary = function(){
-    console.log("3deploy2");
+    // console.log("3deploy2");
     $(".tertiaryContainer").empty();
     secondaryExcercise=$(".secondaryChoice").val();
     console.log(secondaryExcercise);
@@ -117,7 +116,7 @@ numberInput.attr("type","number");
 numberInput.attr("name","numberInput");
 let durRep = $("<select>")
 durRep.addClass("durRep");
-durRep.html("<option value='rep'>repetition</option><option value='dur'>duration</option>");
+durRep.html("<option value='rep'>repetition</option><option value='dur'>minites</option>");
 $(".tertiaryContainer").append(numberInputTitle,numberInput,durRep);
 let submitButton=$("<button>");
 submitButton.addClass("btn btn-primary submitButton");
@@ -132,11 +131,14 @@ $(".tertiaryContainer").append(submitButton);
 
 var deployhomepage = function(){
     
-    console.log("hshdsds");
+    // console.log("hshdsds");
     $.get("/activityList",function(data){
         console.log("got the stuff");
         console.log(data);
-        activities=data[0].list
+        for(var i=0; i<data.length;i++){
+            if (data[i].list){
+        
+        activities=data[i].list}}
         console.log(activities);
 
         activities=JSON.parse(activities);
@@ -152,18 +154,18 @@ var deployhomepage = function(){
          console.log(balanceChoices);
          excerciseTypeChoice=$(".excerciseType").val()
          console.log(excerciseTypeChoice);
-})
+});
 }
 
 var deploySecondaryChoice = function(){
-    console.log("deploy2nd choice");
+    // console.log("deploy2nd choice");
 
     event.preventDefault;
     event.stopPropagation;
     $(".secondaryContainer").empty();
     $(".tertiaryContainer").empty();
    excerciseTypeChoice=$(".excerciseType").val();
-   console.log(excerciseTypeChoice);
+//    console.log(excerciseTypeChoice);
     switch (excerciseTypeChoice){
         case "strength":
         deploystrengthChoices();
@@ -179,6 +181,183 @@ var deploySecondaryChoice = function(){
 };
 }
 
+var deploylogs=function(){
+    $(".logList").empty()
+
+    $.get("/allLogged", function(data){
+        console.log(data);
+        var strengthLog = data[0].strengthexcs;
+        // console.log(strengthlog);
+        var balanceLog = data[0].balanceexcs;
+        var enduranceLog = data[0].enduranceexcs;
+        var flexibilityLog = data[0].flexibilityexcs;
+
+        var strengthTitleDiv = $("<div>");
+        strengthTitleDiv.html("<h4>Strength Excercises</h4>");
+
+         for ( var i=0;i<strengthLog.length;i++){
+            var newLog = $("<div>");
+            var newName= $("<p>");
+            newLog.addClass("newLogDiv");
+            newName.text("activity: "+strengthLog[i].name + " ");
+            newLog.append(newName);
+            var newNumberDiv = $("<div>");
+            var newNumber;
+            if(strengthLog[i].repetition){
+                 newNumber=strengthLog[i].repetition
+                newNumberDiv.text("repetitions: "+ newNumber);
+                
+            }
+            else if(strengthLog[i].duration){newNumber=strengthLog[i].duration;
+            newNumberDiv.text("duration: "+ newNumber + " minutes");
+            
+            }
+            newLog.append(newNumberDiv);
+            strengthTitleDiv.append(newLog);}
+            $(".logList").append(strengthTitleDiv);
+
+            var balanceTitleDiv = $("<div>");
+            balanceTitleDiv.html("<h4>Balance Excercises</h4>");
+    
+             for ( var i=0;i<balanceLog.length;i++){
+                var newLog = $("<div>");
+                var newName= $("<p>");
+                newLog.addClass("newLogDiv");
+                newName.text("activity: "+balanceLog[i].name + " ");
+                newLog.append(newName);
+                var newNumberDiv = $("<div>");
+                var newNumber;
+                if(balanceLog[i].repetition){
+                     newNumber=balanceLog[i].repetition
+                    newNumberDiv.text("repetitions: "+ newNumber);
+                    
+                }
+                else if(balanceLog[i].duration){newNumber=balanceLog[i].duration;
+                newNumberDiv.text("duration: "+ newNumber + " minutes");
+                
+                }
+                newLog.append(newNumberDiv);
+                balanceTitleDiv.append(newLog);}
+                $(".logList").append(balanceTitleDiv);
+
+                var enduranceTitleDiv = $("<div>");
+            enduranceTitleDiv.html("<h4>Endurance Excercises</h4>");
+    
+             for ( var i=0;i<enduranceLog.length;i++){
+                var newLog = $("<div>");
+                var newName= $("<p>");
+                newLog.addClass("newLogDiv");
+                newName.text("activity: "+enduranceLog[i].name + " ");
+                newLog.append(newName);
+                var newNumberDiv = $("<div>");
+                var newNumber;
+                if(enduranceLog[i].repetition){
+                     newNumber=enduranceLog[i].repetition
+                    newNumberDiv.text("repetitions: "+ newNumber);
+                    
+                }
+                else if(enduranceLog[i].duration){newNumber=enduranceLog[i].duration;
+                newNumberDiv.text("duration: "+ newNumber + " minutes");
+                
+                }
+                newLog.append(newNumberDiv);
+                enduranceTitleDiv.append(newLog);}
+                $(".logList").append(enduranceTitleDiv);
+
+                var flexibilityTitleDiv = $("<div>");
+            flexibilityTitleDiv.html("<h4>Flexibility Excercises</h4>");
+    
+             for ( var i=0;i<flexibilityLog.length;i++){
+                var newLog = $("<div>");
+                var newName= $("<p>");
+                newLog.addClass("newLogDiv");
+                newName.text("activity: "+flexibilityLog[i].name + " ");
+                newLog.append(newName);
+                var newNumberDiv = $("<div>");
+                var newNumber;
+                if(flexibilityLog[i].repetition){
+                     newNumber=flexibilityLog[i].repetition
+                    newNumberDiv.text("repetitions: "+ newNumber);
+                    
+                }
+                else if(flexibilityLog[i].duration){newNumber=flexibilityLog[i].duration;
+                newNumberDiv.text("duration: "+ newNumber + " minutes");
+                
+                }
+                newLog.append(newNumberDiv);
+                flexibilityTitleDiv.append(newLog);}
+                $(".logList").append(flexibilityTitleDiv);
+
+
+})
+}
+
+var handleSubmit = function(){
+    // console.log("submit works o n the other end")
+    var name = $(".secondaryChoice").val()
+    var newname = $(".newInput").val()
+    var numberTypeInput = $(".durRep").val()
+    var numberInput= $(".numberInput").val()
+if(name=="New"){
+    name=newname;}
+    var log;
+    if (numberTypeInput =="rep"){
+         log = {
+            "name":name,
+            "repetition":numberInput
+        }}
+    else {log= {
+            "name":name,
+            "duration":numberInput
+        }};
+        switch($(".excerciseType").val()){
+            case "strength":
+                $.post("/strengthSubmit",log,function(data){
+                    console.log(data);
+                })
+            break;
+        case "endurance":
+        // enduranceChoices.push(newActivity);
+        $.post("/enduranceSubmit",log,function(data){
+            console.log(data);
+        })
+            break;
+        case "balance":
+            $.post("/balanceSubmit",log,function(data){
+                console.log(data);
+            })
+            break;
+        case "flexibility":
+            $.post("/FlexibilitySubmit",log,function(data){
+                console.log(data);
+            });
+            console.log("log");
+            console.log(log);
+
+        
+    }}
+  
+
+    
+//        switch($(".excerciseType").val()){
+//         case "strength":
+// $.post("/submitStrength",
+// function(data))        break;
+//     case "endurance":
+//     enduranceChoices.push(newActivity);
+//         break;
+//     case "balance":
+//     balanceChoices.push(newActivity);
+//         break;
+//     case "flexibility":
+//         flexibilityChoices.push(newActivity);
+
+
+    
+        // event.preventDefault;
+    // event.
+
+
 
 $(document).on("change",".secondaryChoice",function(event){
     event.stopPropagation;
@@ -191,10 +370,15 @@ $(document).on("change",".secondaryChoice",function(event){
 
 
 $(document).on("ready",deployhomepage());
-// $("document").on("ready",deploylogs);
+$(document).on("ready",deploylogs());
 
 
-// $(".logForm").on("submit",handleSubmit);
+// $(document).on("click",".submitButton",function(event){
+//     console.log("submit works at teh start");
+//     event.preventDefault;
+//     event.stopPropagation;
+//     handleSubmit();
+// });
 
 $(document).on('change','.excerciseType',function(event){
     
@@ -205,4 +389,69 @@ $(document).on('change','.excerciseType',function(event){
     console.log("deploying");
     deploySecondaryChoice();
 })
+$(document).on('click','.submitButton',function(event){
+    console.log("updatelist");
+    event.stopPropagation;
+    event.preventDefault;
+    handleSubmit();
+    if($(".secondaryChoice").val()=="New"){
+        var newActivity = $(".newInput").val();
+        console.log(newActivity);
+        switch($(".excerciseType").val()){
+            case "strength":
+        strengthChoices.push(newActivity);
+            break;
+        case "endurance":
+        enduranceChoices.push(newActivity);
+            break;
+        case "balance":
+        balanceChoices.push(newActivity);
+            break;
+        case "flexibility":
+            flexibilityChoices.push(newActivity);
+            
+        }
+        
+        var newActivityArrays={
+            "strength":strengthChoices,
+            "endurance":enduranceChoices,
+            "balance":balanceChoices,
+            "flexibility":flexibilityChoices
 
+        };
+        console.log(newActivityArrays);
+
+        newActivityArrays=JSON.stringify(newActivityArrays);
+        console.log("walawala");
+        console.log(newActivityArrays);
+        var body = {"list":newActivityArrays};
+        $.ajax({
+            type:"POST",
+            url: "/activityListNew",
+            // headers: {"X-HTTP-Method-Override": "PUT"},
+            data:body}).then(function(data){
+                console.log("name");
+            console.log(data);
+        })
+    }
+});
+$(document).on("click",".deleteAllButton", function(event){
+    event.preventDefault;
+    event.stopPropagation;
+    $.post("/deleteAll",function(result){
+        var data = JSON.stringify(result);
+        console.log("deleted");
+        console.log(data);
+        location.reload();
+    })
+
+
+})
+
+// $.ajax({
+//     type: 'POST', // Use POST with X-HTTP-Method-Override or a straight PUT if appropriate.
+//     dataType: 'json', // Set datatype - affects Accept header
+//     url: "http://example.com/people/1", // A valid URL
+//     headers: {"X-HTTP-Method-Override": "PUT"}, // X-HTTP-Method-Override set to PUT.
+//     data: '{"name": "Dave"}' // Some data e.g. Valid JSON as a string
+// });

@@ -7,7 +7,7 @@ const BalanceSchema = new Schema({
     type: String,
     unique: true
   },
-  BalanceExc: [
+  balanceexcs: [
     {
       type: Schema.Types.ObjectId,
       ref: "BalanceExc"

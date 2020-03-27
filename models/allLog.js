@@ -7,24 +7,29 @@ const AllLogSchema = new Schema({
     type: String,
     unique: true
   },
-  Exc: [
+  balanceexcs: [
     {
       type: Schema.Types.ObjectId,
       ref: "BalanceExc"
-    },
+    }],
+    strengthexcs:[
     {
       type: Schema.Types.ObjectId,
       ref: "StrengthExc"
-    },
+    }],
+    flexibilityexcs:[
     {
       type: Schema.Types.ObjectId,
       ref: "FlexibilityExc"
     },
+    ],
+    enduranceexcs:[
     {
       type: Schema.Types.ObjectId,
       ref: "EnduranceExc"
     }
-  ],
+  ]
+  
 });
 //   StrengtheExc: [
 //     {

@@ -7,7 +7,7 @@ const StrengthSchema = new Schema({
     type: String,
     unique: true
   },
-  StrengthExc: [
+  strengthexcs: [
     {
       type: Schema.Types.ObjectId,
       ref: "StrengthExc"

@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const strengthExcSchema = new Schema({
-  activity: String,
+  name: String,
   repetition: Number,
   duration: Number,
 });
