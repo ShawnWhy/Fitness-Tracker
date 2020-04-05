@@ -19,7 +19,7 @@ db.ActivityList.findOneAndUpdate({name:"ListToChooseFrom"},{list:JSON.stringify(
     console.log(message);
   });
  
-  db.AllLog.findOneAndUpdate({name:"AllOfLogs"},{new: true, upsert:true})
+  db.AllLog.create({name:"AllOfLogs"},{new: true, upsert:true})
   .then(dbAllLog=>{
     console.log(dbAllLog);
   })
