@@ -18,6 +18,35 @@ db.ActivityList.findOneAndUpdate({name:"ListToChooseFrom"},{list:JSON.stringify(
   .catch(({message}) => {
     console.log(message);
   });
+  db.Strength.create({ name: "Strength" })
+  .then(dbStrength => {
+    console.log(dbStrength);
+  })
+  .catch(({message}) => {
+    console.log(message);
+  });
+  db.Endurance.create({ name: "Endurance" })
+  .then(dbEndurance => {
+    console.log(dbEndurance);
+  })
+  .catch(({message}) => {
+    console.log(message);
+  });
+  db.Balance.create({ name: "Balance" })
+  .then(dbBalance => {
+    console.log(dbBalance);
+  })
+  .catch(({message}) => {
+    console.log(message);
+  });
+
+  db.Flexibility.create({ name: "Flexibility" })
+  .then(dbFlexibility => {
+    console.log(dbFlexibility);
+  })
+  .catch(({message}) => {
+    console.log(message);
+  });
 
   db.AllLog.findOneAndUpdate({name:"AllOfLogs"},{new: true, upsert:true})
   .then(dbAllLog=>{
