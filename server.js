@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 const db = require("./models");
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnesslogger", { useCreateIndex: true,
-useNewUrlParser: true,useUnifiedTopology: true},);
+useNewUrlParser: true,useUnifiedTopology: true,useUnifiedTopology: true},);
 // mongoose.set("useFindAndModify",false);
 
 var activityList = {"strength":["push ups","pull ups","dead lift","bench lift"],"endurance":["jogging","cycling","jump roping"],"balance":["foottaps","sit to stand","standing march"],"flexibility":["yoga","stretching","tai-chi"]};
