@@ -1,44 +1,94 @@
 .containerOne{
-    border-radius:10px;
+    border-radius:5px;
     border:1px solid black;
     text-align:center
 
 }
 
 .logContainer{
-    border-radius:10px;
+    border-radius:5px;
     border:1px solid black;
     text-align:center
 }
 
 .secondaryContainer{
-    border-radius:10px;
+    border-radius:5px;
     border:1px solid black;
-    text-align:center
+    text-align:center;
+    margin-top:2px
 }
 
 .newLogDiv{
     border:1px solid black;
-    border-radius:10px;
+    border-radius:5px;
     text-align:center
 
 }
 
-.contain{
+input{
+    border-radius:5px;
+    border:1px solid black;
+    text-align:center;
+    margin:2px;
+    width:20%;
+
+}
+
+.contain1{
     
     margin:10px auto;
     text-align: center;
     display: flex;
     justify-content: center;
+    display:flex;
+
     
 }
 
-body{
-    align-items: center;
-    margin:5px auto
+.main{
+    text-align: center;
 }
 
 div{
     text-align: center;
-    margin:3px auto;
+    margin:2%;
+}
+
+form{
+    margin:5px;
+}
+
+
+.tertiaryContainer{
+    margin:2px auto;
+    /* display:flex;
+    flex-direction: row; */
+}
+
+h2{
+    text-align: center;
+}
+h3{
+    text-align: center;
+    margin:2px;
+}
+
+.btn{
+    margin:3px;
+}
+
+
+
+@media only screen and (max-width: 480px){
+   
+
+   .contain1{
+    margin:2% auto;
+    text-align: center;
+    /* display: flex;
+    justify-content: center; */
+    display:flex;
+    flex-direction: row;
+}
+
 }
