@@ -10,6 +10,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnesslogger",
 useNewUrlParser: true,useUnifiedTopology: true,useUnifiedTopology: true},);
 // mongoose.set("useFindAndModify",false);
 
+//adds the activities into the list to choose from 
 var activityList = {"strength":["push ups","pull ups","dead lift","bench lift"],"endurance":["jogging","cycling","jump roping"],"balance":["foottaps","sit to stand","standing march"],"flexibility":["yoga","stretching","tai-chi"]};
 db.ActivityList.findOneAndUpdate({name:"ListToChooseFrom"},{list:JSON.stringify(activityList),name:"ListToChooseFrom"},{new: true, upsert:true})
   .then(dbactivitylists => {
@@ -29,18 +30,14 @@ db.ActivityList.findOneAndUpdate({name:"ListToChooseFrom"},{list:JSON.stringify(
   
 
 const app = express();
-
 app.use(logger("dev"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 require("./routes/api")(app);
 
+//the public folder is used as the static 
 app.use(express.static("public"));
-
-
-
-
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);

@@ -9,25 +9,36 @@
     border-radius:10px;
     border:1px solid black;
     text-align:center
-
-
-
 }
 
 .secondaryContainer{
     border-radius:10px;
     border:1px solid black;
     text-align:center
-
-
-
-
-
 }
 
 .newLogDiv{
-border:1px solid black;
-border-radius:10px;
-text-align:center
+    border:1px solid black;
+    border-radius:10px;
+    text-align:center
 
+}
+
+.contain{
+    
+    margin:10px auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    
+}
+
+body{
+    align-items: center;
+    margin:5px auto
+}
+
+div{
+    text-align: center;
+    margin:3px auto;
 }

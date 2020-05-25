@@ -31,26 +31,7 @@ const AllLogSchema = new Schema({
   ]
   
 });
-//   StrengtheExc: [
-//     {
-//       type: Schema.Types.ObjectId,
-//       ref: "StrengthExc"
-//     }
-//   ],
-//   EnduranceExc: [
-//     {
-//       type: Schema.Types.ObjectId,
-//       ref: "EnduranceExc"
-//     }
-//   ],
-//   FlexibilityExc: [
-//     {
-//       type: Schema.Types.ObjectId,
-//       ref: "FlexibilityExc"
-//     }
-//   ]
 
-// });
 
 const AllLog = mongoose.model("AllLog", AllLogSchema);
 
